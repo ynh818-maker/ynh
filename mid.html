@@ -5,14 +5,14 @@
             a:link{color:blue;}
             a.spc{color:cadetblue;}
         </style>
-        <title></title>
+        <title>제목</title>
         <meta charset="UTF-8">
     </head>
     <body>
         <header>
             <h3></h3>
-            <p>cacioepepe<br>상명대학교 소프트웨어학과 3학년<br>시각적 편안함에 관심있습니다.</p>
-            <a href="https://github.com/ynh818-maker">GitHub</a>
+            <p>cacioepepe<br>상명대학교 소프트웨어학과 3학년<br>시각 요소에 관심있습니다.<br><a href="https://github.com/ynh818-maker">GitHub</a></p>
+            
         </header>
         <section>
             <h3>실적</h3>
@@ -21,7 +21,7 @@
                     <th>시기</th><th>분류</th><th>내용</th><th>본인 역할</th>
                 </tr>
                 <tr>
-                    <th>2023.12</th><th>수상</th><th>교과우수상&#40여행지리, 생활과 과학&#41</th><th>우수 성적 취득</th>
+                    <th>2023.12</th><th>수상</th><th>교과우수상&#40;여행지리, 생활과 과학&#41;</th><th>우수 성적 취득</th>
                 </tr>
                 <tr>
                     <th>2022.07</th><th>수상</th><th>선행상</th><th>담당 교사 추천</th>
@@ -37,60 +37,27 @@
         <section>
             <h3>수강과목</h3>
             <dl>
-                <dt>2026-2</dt><dd>임베디드IoT프로그래밍&#40전공&#41</dd><dd>소프트웨어프로젝트&#40전공&#41</dd><dd>약의과학이야기&#40교양&#41</dd><dd>이산수학&#40전공&#41</dd><dd>기초수학&#40교양&#41</dd><dd><a href="#agent">웹프로그래밍및AI에이전트&#40전공&#41</a></dd>
+                <dt>2026-2</dt><dd>임베디드IoT프로그래밍&#40;전공&#41;</dd><dd>소프트웨어프로젝트&#40;전공&#41;</dd><dd>약의과학이야기&#40;교양&#41;</dd><dd>이산수학&#40;전공&#41;</dd><dd>기초수학&#40;교양&#41;</dd><dd><a href="#agent">웹프로그래밍및AI에이전트&#40;전공&#41;</a></dd>
             </dl>
         </section>
         <section>
             <h3><a id="agent">웹프로그래밍및 주차별 링크</a></h3>
-            <p><a href="https://github.com/ynh818-maker/ynh/blob/main/index.html">1주차</a><a href="https://github.com/ynh818-maker/ynh/blob/main/doc01.html">2주차</a><span title="예정" class="spc">3주차</span><a href="https://github.com/ynh818-maker/ynh/blob/main/doc4.html" >4주차</a><span title="예정" class="spc">5주차</span><a href="https://github.com/ynh818-maker/ynh/blob/main/doc7.html">6주차</a><span title="예정" class="spc">7주차</span><span title="예정">8주차</span><span title="예정">9주차</span><span title="예정">10주차</span><span title="예정">11주차</span><span title="예정">12주차</span><span title="예정">13주차</span><span title="예정">14주차</span><span title="예정">15주차</span><br></p>
+            <p><span class="spc" title="예정">1주차</span><a href="https://github.com/ynh818-maker/ynh/blob/main/doc01.html">2주차</a><span title="예정" class="spc">3주차</span><a href="https://github.com/ynh818-maker/ynh/blob/main/doc4.html" >4주차</a><span title="예정" class="spc">5주차</span><a href="https://github.com/ynh818-maker/ynh/blob/main/doc7.html">6주차</a><span title="예정" class="spc">7주차</span><span title="예정">8주차</span><span title="예정">9주차</span><span title="예정">10주차</span><span title="예정">11주차</span><span title="예정">12주차</span><span title="예정">13주차</span><span title="예정">14주차</span><span title="예정">15주차</span><br></p>
         </section>
         
         <footer>
-            <span id="last-updated">최종 수정일: 로딩 중...</span>
+            <p>최종 수정일:<span id="last-modified">YYYY-MM-DD</span></p>
         </footer>
 
         <script>
-            // ② 배포 저장소(GitHub) 정보 설정
-            // 본인의 GitHub Username과 Repository 이름으로 변경하세요.
-            const OWNER = 'ynh818-maker'; 
-            const REPO = 'ynh'; 
+            window.addEventListener('DOMContentLoaded', ()=>{
+                const lastMod = new Date(document.lastModified);
+                const year = lastMod.getFullYear();
+                const month = String(lastMod.getMonth() +1).padStart(2, '0');
+                const day = String(lastMod.getDate()).padStart(2,'0');
 
-            async function fetchLastCommitDate() {
-                try {
-                    // GitHub REST API를 통해 최신 커밋 내역 가져오기
-                    const response = await fetch(`https://github.com{OWNER}/${REPO}/commits?per_page=1`);
-                    
-                    if (!response.ok) {
-                        throw new Error('네트워크 응답에 문제가 있습니다.');
-                    }
-                    
-                    const commits = await response.json();
-                    
-                    if (commits.length > 0) {
-                        // 마지막 커밋 날짜 추출 (형식: 2026-10-21T06:41:00Z)
-                        const commitDateStr = commits[0].commit.committer.date;
-                        
-                        // YYYY-MM-DD 형식으로 변환
-                        const date = new Date(commitDateStr);
-                        const yyyy = date.getFullYear();
-                        const mm = String(date.getMonth() + 1).padStart(2, '0');
-                        const dd = String(date.getDate()).padStart(2, '0');
-                        
-                        const formattedDate = `${yyyy}-${mm}-${dd}`;
-
-                        // 화면에 "최종 수정일: YYYY-MM-DD" 형태로 표시
-                        document.getElementById('last-updated').textContent = `최종 수정일: ${formattedDate}`;
-                    } else {
-                        document.getElementById('last-updated').textContent = '최종 수정일: 커밋 기록 없음';
-                    }
-                } catch (error) {
-                    console.error('커밋 날짜를 가져오는 중 오류 발생:', error);
-                    document.getElementById('last-updated').textContent = '최종 수정일: 불러오기 실패';
-                }
-            }
-
-            // 페이지 로드 시 함수 실행
-            window.addEventListener('DOMContentLoaded', fetchLastCommitDate);
+                document.getElementById('last-modified').textContent=`${year}-${month}-${day}`;
+            });
         </script>
 
     </body>
